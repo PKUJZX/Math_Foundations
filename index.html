@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学之美 | 核心思想与直观理解</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --primary-color: #007bff;
+            --primary-hover: #0056b3;
+            --dark-color: #1a253c;
+            --text-color: #333;
+            --light-gray: #f4f7f9;
+            --white-color: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-color);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--white-color);
+            padding: 15px 5%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        .logo i {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: var(--dark-color);
+            color: var(--white-color);
+            background-image: 
+                linear-gradient(rgba(26, 37, 60, 0.8), rgba(26, 37, 60, 0.8)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Crect x='0' y='0' width='10' height='10'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: var(--white-color);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        /* Main Content - Card Grid */
+        .content-grid {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            margin: 0 0 15px 0;
+        }
+
+        .card p {
+            margin: 0 0 25px 0;
+            flex-grow: 1;
+        }
+
+        .card-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .card-button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--dark-color);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .footer .social-links a {
+            color: var(--white-color);
+            font-size: 1.5em;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .footer .social-links a:hover {
+            color: var(--primary-color);
+        }
+        .footer p {
+            margin-top: 10px;
+        }
+        .author-credit {
+            color: var(--white-color);
+            font-weight: 500;
+            font-size: 1.05em;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo"><i class="fas fa-infinity"></i>数学之美</a>
+        <nav class="nav-links">
+            <a href="https://github.com/pkujzx" target="_blank">GitHub</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>领略数学之美</h1>
+        <p>本站致力于拨开繁琐计算的迷雾，带你探索大学数学的核心思想与直观本质。在这里，我们共同欣赏数学的结构之美、逻辑之严与思想之深。</p>
+    </section>
+
+    <main class="content-grid">
+        <div class="card">
+            <div class="card-content">
+                <i class="fas fa-mountain-sun card-icon"></i>
+                <h2>多元微积分</h2>
+                <p>理解高维空间中的变化率与累积。从梯度、散度、旋度到格林、高斯、斯托克斯定理，洞察向量场背后优美的统一性。</p>
+                <a href="https://pkujzx.github.io/Multivariable_Calculus/" class="card-button" target="_blank">开启探索 &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <i class="fas fa-sitemap card-icon"></i>
+                <h2>线性代数</h2>
+                <p>线性代数是描述变换的语言。深入理解向量空间、特征值与奇异值分解，把握数据与系统背后的核心结构。</p>
+                <a href="https://pkujzx.github.io/Linear_Algebra/" class="card-button" target="_blank">开启探索 &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <i class="fas fa-dice-d20 card-icon"></i>
+                <h2>概率论</h2>
+                <p>探索量化不确定性的数学框架。从基本公理到中心极限定理，理解随机现象背后的规律，为统计与机器学习奠定基础。</p>
+                <a href="https://pkujzx.github.io/Probability-Theory/" class="card-button" target="_blank">开启探索 &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <i class="fas fa-wave-square card-icon"></i>
+                <h2>泛函分析</h2>
+                <p>将线性代数的思想推广至无穷维的函数空间。理解赋范空间、希尔伯特空间等抽象概念如何统一地描述微分方程与量子力学。</p>
+                <a href="https://pkujzx.github.io/Functional-Analysis/" class="card-button" target="_blank">开启探索 &rarr;</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" id="about">
+        <div class="social-links">
+            <a href="https://github.com/pkujzx" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <p class="author-credit">网站由 蒋子轩 制作</p>
+        <p>&copy; 2025 pkujzx. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
